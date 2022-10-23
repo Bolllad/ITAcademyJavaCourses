@@ -9,6 +9,8 @@ public class HomeWork2Task4 {
         char[] value = scanner.nextLine().toCharArray();
 
         System.out.print("Last number in value: " + value[value.length - 1]);
+
+        scanner.close();
     }
 
 }

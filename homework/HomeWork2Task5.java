@@ -14,6 +14,8 @@ public class HomeWork2Task5 {
         } else {
             System.out.print("Value must be 4-digits long!!!");
         }
+
+        scanner.close();
     }
 
 }

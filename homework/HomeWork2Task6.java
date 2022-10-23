@@ -13,6 +13,8 @@ public class HomeWork2Task6 {
         } else {
             System.out.print("Value must be 5-digits long!!!");
         }
+
+        scanner.close();
     }
 
 }

@@ -13,6 +13,8 @@ public class HomeWork2Task3 {
         } else {
             System.out.println("Number must be 3-digit long!!!");
         }
+
+        scanner.close();
     }
 
 }

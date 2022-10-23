@@ -16,6 +16,8 @@ public class HomeWork2Task2 {
         } else {
             System.out.println("Both values must be greater than 0!!!");
         }
+
+        scanner.close();
     }
 
 }
