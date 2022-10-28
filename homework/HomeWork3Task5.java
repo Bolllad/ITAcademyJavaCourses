@@ -9,7 +9,7 @@ public class HomeWork3Task5 {
         int day = scanner.nextInt() + 1, month = scanner.nextInt(), year = scanner.nextInt();
 
         if (day > 32 || day < 2 || month > 12 || month < 1) {
-            System.out.println("There can't be such thing as " + day + "." + month + "." + year + " please enter proper date!");
+            System.out.println("There can't be such thing as " + (day - 1) + "." + month + "." + year + " please enter a proper date!");
         } else {
 
             if (day > 31 && month == 12) {
