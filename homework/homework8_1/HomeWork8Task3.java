@@ -101,12 +101,3 @@ class Bus extends Transport {
     }
 
 }
-
-/*enum Busses {
-    Mercedes("19472", 10.2f, 4, 30),
-    BMW("99572", 10f, 6, 25);
-
-    Busses(String licensePlate, float price, int wheels, int seats) {
-
-    }
-} */
