@@ -11,7 +11,7 @@ public class HomeWork8Task2 {
         flowers[4] = new Rose("white", 11, 4f);
 
         float price = 0;
-        int min = 8760, max = 0;
+        int min = flowers[0].getLifespan(), max = 0;
         for (Flower flower : flowers) {
             price += flower.getPrice();
 
@@ -35,6 +35,13 @@ class Flower {
     private int lifespan;
 
     private float price;
+
+    Flower(String type, String color, int lifespan, float price) {
+        this.type = type;
+        this.color = color;
+        this.lifespan = lifespan;
+        this.price = price;
+    }
 
     public void setPrice(float price) {
         this.price = price;
@@ -71,34 +78,29 @@ class Flower {
     public void timeUntilFades() {
         System.out.println("This " + type + " will fade in " + lifespan + " hours.");
     }
+
 }
 
 class Rose extends Flower {
-    final String type = "Rose";
 
     public Rose(String color, int lifespan, float price) {
-        this.setColor(color);
-        this.setLifespan(lifespan);
-        this.setPrice(price);
+        super("Rose", color, lifespan, price);
     }
+
 }
 
 class Tulip extends Flower {
-    final String type = "Tulip";
 
     public Tulip(String color, int lifespan, float price) {
-        this.setColor(color);
-        this.setLifespan(lifespan);
-        this.setPrice(price);
+        super("Tulip", color, lifespan, price);
     }
+
 }
 
 class Daisy extends Flower {
-    final String type = "Daisy";
 
     public Daisy(String color, int lifespan, float price) {
-        this.setColor(color);
-        this.setLifespan(lifespan);
-        this.setPrice(price);
+        super("Daisy", color, lifespan, price);
     }
+
 }
