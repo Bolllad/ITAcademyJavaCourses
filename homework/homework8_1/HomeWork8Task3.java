@@ -3,7 +3,7 @@ package homework8_1;
 public class HomeWork8Task3 {
 
     public static void main(final String[] args) {
-        Transport[] busses = new Bus[6];
+        Bus[] busses = new Bus[6];
         busses[0] = new Bus("12934", 10.2f, 4, 25, 4.3f);
         busses[1] = new Bus("64325", 10.5f, 6, 30, 2.1f);
         busses[2] = new Bus("69420", 9.95f, 4, 26, 8.3f);
@@ -11,29 +11,13 @@ public class HomeWork8Task3 {
         busses[4] = new Bus("52134", 10f, 6, 20, 4.23f);
         busses[5] = new Bus("98712", 9.5f, 4, 19, 2.2f);
 
-        Transport savedBus;
-        for (int index = 0; index < busses.length; index++) {
-            for (int innerIndex = 0; innerIndex < busses.length; innerIndex++) {
-                if (busses[index].getFuelConsumption() < busses[innerIndex].getFuelConsumption()) {
-                    savedBus = busses[index];
-                    busses[index] = busses[innerIndex];
-                    busses[innerIndex] = savedBus;
-                }
-            }
-        }
+        BusCompany someCompany = new BusCompany(busses);
 
-        for (Transport bus : busses) {
-            System.out.print(bus.getFuelConsumption() + ", ");
-        }
-        System.out.println("\b\b");
+        someCompany.printFuelConsumption();
+        someCompany.sortByFuelConsumption();
+        someCompany.printFuelConsumption();
 
-        Transport searchCriteria = new Bus("12934", 10.2f, 4, 25, 4.3f);
-        for (Transport buss : busses) {
-            if (buss.getSeats() == searchCriteria.getSeats() && buss.getFuelConsumption() == buss.getFuelConsumption()
-                    && buss.getPrice() == searchCriteria.getPrice()) {
-                System.out.println("Found your bus! " + buss);
-            }
-        }
+        someCompany.searchByCriteria(new Bus("12934", 10.2f, 4, 25, 4.3f));
     }
 
 }
@@ -100,4 +84,44 @@ class Bus extends Transport {
         return licensePlate;
     }
 
+}
+
+class BusCompany {
+    private final Bus[] busses;
+
+    BusCompany(Bus[] busses) {
+        this.busses = busses.clone();
+    }
+
+    public void sortByFuelConsumption() {
+        Bus savedBus;
+
+        for (int index = 0; index < busses.length; index++) {
+            for (int innerIndex = 0; innerIndex < busses.length; innerIndex++) {
+                if (busses[index].getFuelConsumption() < busses[innerIndex].getFuelConsumption()) {
+                    savedBus = busses[index];
+                    busses[index] = busses[innerIndex];
+                    busses[innerIndex] = savedBus;
+                }
+            }
+        }
+    }
+
+    public void printFuelConsumption() {
+        for (Transport bus : busses) {
+            System.out.print(bus.getFuelConsumption() + ", ");
+        }
+        System.out.println("\b\b");
+    }
+
+    public void searchByCriteria(Bus searchCriteria) {
+        for (Bus buss : busses) {
+            if (buss.getSeats() == searchCriteria.getSeats() && buss.getFuelConsumption() == buss.getFuelConsumption()
+                    && buss.getPrice() == searchCriteria.getPrice()) {
+                System.out.println("Found your bus! " + buss.getLicensePlate());
+                return;
+            }
+        }
+        System.out.println("Couldn't find a bus matching this criteria.");
+    }
 }

@@ -10,21 +10,11 @@ public class HomeWork8Task2 {
         flowers[3] = new Daisy("yellow", 14, 3.6f);
         flowers[4] = new Rose("white", 11, 4f);
 
-        float price = 0;
-        int min = flowers[0].getLifespan(), max = 0;
-        for (Flower flower : flowers) {
-            price += flower.getPrice();
+        Bouquet myBouquet = new Bouquet(flowers);
 
-            if (flower.getLifespan() > max) {
-                max = flower.getLifespan();
-            }
-
-            if (flower.getLifespan() < min) {
-                min = flower.getLifespan();
-            }
-        }
-
-        System.out.println("This bouquet costs: $" + price + " and first flower will fade in: " + min + " hours, last: " + max + " hours.");
+        System.out.println("This bouquet costs " + myBouquet.bouquetPrice());
+        System.out.println("Last flower in this bouquet will fade in " + myBouquet.bouquetLifespan() + " hours");
+        myBouquet.bouquetContains();
     }
 
 }
@@ -101,6 +91,45 @@ class Daisy extends Flower {
 
     public Daisy(String color, int lifespan, float price) {
         super("Daisy", color, lifespan, price);
+    }
+
+}
+
+class Bouquet {
+    private final Flower[] flowerArray;
+
+    Bouquet(Flower[] flowers) {
+        flowerArray = flowers.clone();
+    }
+
+    public float bouquetPrice() {
+        float price = 0;
+        for (Flower flower : flowerArray) {
+            price += flower.getPrice();
+        }
+
+        return price;
+    }
+
+    public int bouquetLifespan() {
+        int max = 0;
+        for (Flower flower : flowerArray) {
+
+            if (flower.getLifespan() > max) {
+                max = flower.getLifespan();
+            }
+
+        }
+
+        return max;
+    }
+
+    public void bouquetContains() {
+        System.out.print("This bouquet has ");
+        for (Flower flower : flowerArray) {
+            System.out.print(flower.getColor() + " " + flower.getType() + ", ");
+        }
+        System.out.println("\b\b");
     }
 
 }
