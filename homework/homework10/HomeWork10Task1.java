@@ -1,27 +1,22 @@
 package homework10;
 
-import java.net.Inet4Address;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class HomeWork10Task1<K> {
 
     public static void main(final String[] args) {
-        Float[] floatArray = {94.2f, 12f, 826.5f};
-        Map<Float, Integer> testMap = arrayToMap(floatArray, 1);
+        Integer[] integers = {4, 6, 3, 2, 2, 1, 6};
+        Map<Integer, Integer> testMap = arrayToMap(integers);
         System.out.println(testMap.toString());
     }
 
-    public static <K> Map<K, Integer> arrayToMap(K[] ks, int index) {
-        Integer counter = 0;
-        for (K item : ks) {
-            counter++;
-        }
-
+    public static <K> Map<K, Integer> arrayToMap(K[] ks) {
         Map<K, Integer> newMap = new HashMap<>();
-        newMap.put(ks[index], counter);
+
+        for (int index = 0; index < ks.length; index++) {
+            newMap.merge(ks[index], 1, Integer::sum);
+        }
 
         return newMap;
     }
