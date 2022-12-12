@@ -28,11 +28,6 @@ class Pair<T> {
         this.secondElem = secondElem;
     }
 
-    Pair() {
-        firstElem = null;
-        secondElem = null;
-    }
-
     public T first() {
         return firstElem;
     }

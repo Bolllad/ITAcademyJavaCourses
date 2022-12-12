@@ -15,16 +15,7 @@ public class HomeWork10Task2 {
         char[] chars = s.toCharArray();
 
         for (int index = 0; index < chars.length; index++) {
-            Integer counter = 0;
-
-            if (!newMap.containsKey(chars[index])) {
-                for (int innerIndex = index; innerIndex < chars.length; innerIndex++) {
-                    if (chars[index] == chars[innerIndex]) {
-                        counter++;
-                    }
-                }
-                newMap.put(chars[index], counter);
-            }
+            newMap.merge(chars[index], 1, Integer::sum);
         }
 
         return newMap;
