@@ -12,7 +12,7 @@ public class HomeWork11Task2 {
         try {
             System.out.println(myDivider.divide(a, b));
         } catch (ArithmeticException zeroException) {
-            System.out.println("Can't divide by zero! " + zeroException);
+            System.err.println(zeroException.getMessage());
         }
     }
 }
@@ -27,7 +27,7 @@ class MyDivider implements Divider {
     @Override
     public float divide(int a, int b) throws ArithmeticException {
         if (b == 0) {
-            throw new ArithmeticException();
+            throw new ArithmeticException("Can't divide by zero!");
         }
         return (float) a / b;
     }

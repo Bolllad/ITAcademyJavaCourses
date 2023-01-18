@@ -16,9 +16,8 @@ public class HomeWork11Task1 {
                 int userNumber = scanner.nextInt();
                 guessGame(userNumber, randomNumber);
                 break;
-            } catch (GuessGameException ex1) {
-                ex1.printError();
-                //ex1.printStackTrace();
+            } catch (GuessGameException exception) {
+                System.err.println(exception.getMessage());
             }
         }
     }
@@ -26,26 +25,19 @@ public class HomeWork11Task1 {
     public static void guessGame(int number, int randomNumber) throws GuessGameException {
         if (number == randomNumber) {
             System.out.println("Congrats, you've won!");
-        } else {
-            throw new GuessGameException(number, randomNumber);
+            return;
         }
+
+        String errorMessage = number > randomNumber
+                ? "Your number is over the random number, try again."
+                : "Your number is under the random number, try again.";
+            throw new GuessGameException(errorMessage);
     }
 
 }
 
 class GuessGameException extends Exception {
-    int number, randomNumber;
-
-    public GuessGameException(int number, int randomNumber) {
-        this.number = number;
-        this.randomNumber = randomNumber;
-    }
-
-    public void printError() {
-        if (number < randomNumber) {
-            System.out.println("Your number is under the random number, try again.");
-        } else {
-            System.out.println("Your number is over the random number, try again.");
-        }
+    public GuessGameException(String message) {
+        super(message);
     }
 }
